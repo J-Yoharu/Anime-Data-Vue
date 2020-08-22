@@ -2,22 +2,21 @@
         <!-- eslint-disable -->
 
     <div class="carousel d-inline-flex" style="overflow:hidden">
-    <div class="carousel-content d-inline-flex w-100" style="white-space:nowrap;overflow-y:hidden;overflow-x=scroll">
-        <div v-for="(anime,index) in arr" style="min-width:13rem;min-height:16rem;position:relative;" :key="index" class="card item d-inline-flex m-2 rounded shadow-lg border">
-            <img class="card-img-top" :src="anime.image_url" alt="">
-            <div class="card-body p-0">
-                <h4 class="card-title mt-2 text-center m-0">{{anime.title}}</h4>
+        <div class="carousel-content d-inline-flex w-100" style="white-space:nowrap;overflow-y:hidden;overflow-x=scroll">
+            <div v-for="(anime,index) in arr" style="min-width:13rem;min-height:16rem;position:relative;" :key="index" class="card item d-inline-flex m-2 rounded shadow-lg border">
+                <img class="card-img-top" :src="anime.image_url" alt="">
+                <div class="card-body p-0">
+                    <h4 class="card-title mt-2 text-center m-0">{{anime.title}}</h4>
+                </div>
             </div>
         </div>
-    </div>
     
-    <button class="rounded-circle border bg-primary" style="position:absolute;right:0;top:50%;width:3rem;height:3rem"  @click="mover('right',$event)">
-        >
-    </button>
-    <button class="rounded-circle border bg-primary" style="position:absolute;left:0;top:50%;width:3rem;height:3rem" @click="mover('left',$event)">
-        <span><</span>
-    </button>
-
+        <div class="carousel-button right d-flex align-items-center"  @click="num++">
+            <i class="fa fa-3x fa-arrow-circle-right"></i>
+        </div>
+        <div class="carousel-button left d-flex align-items-center" @click="num--">
+            <i class="fa fa-3x fa-arrow-circle-left"></i>
+        </div>
 </div>
 </template>
 
@@ -26,41 +25,46 @@ export default {
     props:['arr'],
     data(){
         return{
-            tamanhoRolagem:0,
+            num:0,
+            carousel:'',
+            qtdComponents:0,
+            elementSize:0,
+       
         }
     },
     methods:{
-        mover(direction,$event){
-            var carousel = $event.path[1].children[0];
-            var components = $event.path[1].children[0].children;
-            var cardSize = components[0].offsetWidth+ components[0].offsetLeft*2;
-            var cardsNaTela=0;
-
-            for (let index = 0; index < components.length; index++) {
-                if(cardSize*(index+1)>carousel.offsetWidth){
+        mover(num){
+            let cardsNaTela=0;
+            //quantidades de cards que tem na view
+            for (let index = 0; index < this.qtdComponents.length; index++) {
+                if(this.elementSize*(index+1)>this.carousel.offsetWidth){
                     cardsNaTela = index;
                     break;
-                }
-                
+                }   
             }
-            //var cardsNaTela = carousel.offsetWidth
-            if(direction=="right"){
-                    this.tamanhoRolagem+=cardSize;
-            }else if(direction=="left"){
-                console.log("retrocedeu")
-                 this.tamanhoRolagem-=cardSize;
-                    
-            }
+            let vezesDeRolagem = Math.floor(this.qtdComponents.length/cardsNaTela);
             
-            //validando se já chegou no limite de rolamente do carousel
-            if( this.tamanhoRolagem>(components.length-cardsNaTela)*cardSize){
-                 this.tamanhoRolagem=0;
-            }else if( this.tamanhoRolagem<0){
-                 this.tamanhoRolagem=(components.length-cardsNaTela)*cardSize;
-            }
-            carousel.scrollTo( this.tamanhoRolagem,0);
-            console.log( "tamanho da rolagem = " + this.tamanhoRolagem)
+            this.carousel.scrollTo((this.elementSize*cardsNaTela)*(num % vezesDeRolagem),0);
         },
+    },
+    watch:{
+        num(){
+            this.mover(this.num);
+        }
+    
+    },
+    mounted(){
+        this.carousel = this.$el.children[0];
+    },
+    updated(){
+        try{
+            this.qtdComponents=this.carousel.children;
+    
+            //o tamanho do elemento é igual o primeiro elemento do card + a borda dele *2 (right e left)
+            this.elementSize=this.qtdComponents[0].offsetWidth+ this.qtdComponents[0].offsetLeft*2;
+        }catch(e){
+            console.log("não tem array");
+        }
     }
 }
 </script>
@@ -75,7 +79,32 @@ export default {
 .carousel-content{
     transition:2s;
 }
-/* .carousel-content::-webkit-scrollbar {
+.carousel-content::-webkit-scrollbar {
   display: none;
-} */
+}
+.carousel-content{
+     scroll-behavior: smooth;
+}
+.carousel-button{
+    position:absolute;
+    width:3rem;
+    height:3rem;
+    outline: none;
+    height:100%;
+      
+}
+.right{
+    right:0;
+    transition: 0.3s;
+}
+.right:hover{
+    background-image:linear-gradient(to left,rgba(0,0,0,0.8) 0,rgba(0,0,0,0.0001) 100%)
+}
+.left{
+    left:0;
+    transition: 0.3s;
+}
+.left:hover{
+    background-image:linear-gradient(to right,rgba(0,0,0,0.8) 0,rgba(0,0,0,0.0001) 100%)
+}
 </style>

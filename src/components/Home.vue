@@ -15,7 +15,7 @@
               <div class="input-group input-group-lg" id="searchDefault">
                 <input type="text" id="inputAnime" class="form-control" placeholder="Pesquisar">
                 <div class="input-group-prepend">
-                  <span class="input-group-text fa fa-search" @click="getAnimes"></span>
+                  <span class="input-group-text fa fa-search" @click="getAnimes('https://api.jikan.moe/v3/search/anime?q=Naruto')"></span>
                 </div>
               </div>
             </div>
@@ -26,9 +26,6 @@
         <div class="container">
             <div class="row">
                 <Carousel :arr="this.animesDaSemana"/>
-                                <Carousel :arr="this.animesDaSemana"/>
-                                                <Carousel :arr="this.animesDaSemana"/>
-
             </div>
         </div>
       </div>
@@ -43,27 +40,29 @@ export default {
     data(){
         return{
             animesDaSemana:'',
+            animesTop:'',
             val:'',
         }
     },
     methods:{
-        async getAnimes(){
-           var a = await axios.get('https://api.jikan.moe/v3/search/anime?q=Naruto');
-           console.log("chamou");
-           this.val='1';
-           console.log(a.data);
-           this.animesDaSemana= a.data.results
+        async getAnimes(url){
+           var a = await axios.get(url);
+           console.log(a);
+           
+           try{
+             this.animesDaSemana =  a.data.results;
+           }catch(e){
+             console.log(e);
+           }
+           
         },
     },
-    watch:{
-        animesDaSemana(depois,antes){
-            console.log(depois);
-            console.log(antes);
-        },
-        val(depois){
-            console.log(depois)
-        }
-    },
+    mounted(){
+      //this.animesTop = this.getAnimes('https://api.jikan.moe/v3/top/anime/1/tv');
+      //this.getAnimes('https://api.jikan.moe/v3/top/anime/1/tv');
+
+
+    }
 }
 </script>
 
