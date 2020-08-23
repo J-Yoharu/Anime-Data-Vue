@@ -1,7 +1,8 @@
 <template>
         <!-- eslint-disable -->
 
-    <div class="carousel d-inline-flex" style="overflow:hidden">
+    <div class="carousel" style="overflow:hidden">
+            <slot></slot>
         <div class="carousel-content d-inline-flex w-100" style="white-space:nowrap;overflow-y:hidden;overflow-x=scroll">
             <div v-for="(anime,index) in arr" style="min-width:13rem;min-height:16rem;position:relative;" :key="index" class="card item d-inline-flex m-2 rounded shadow-lg border">
                 <img class="card-img-top" :src="anime.image_url" alt="">
@@ -9,14 +10,15 @@
                     <h4 class="card-title mt-2 text-center m-0">{{anime.title}}</h4>
                 </div>
             </div>
+            <div class="carousel-button right d-flex align-items-center"  @click="num++">
+                <i class="fa fa-3x fa-arrow-circle-right"></i>
+            </div>
+            <div class="carousel-button left d-flex align-items-center" @click="num--">
+                <i class="fa fa-3x fa-arrow-circle-left"></i>
+            </div>
         </div>
     
-        <div class="carousel-button right d-flex align-items-center"  @click="num++">
-            <i class="fa fa-3x fa-arrow-circle-right"></i>
-        </div>
-        <div class="carousel-button left d-flex align-items-center" @click="num--">
-            <i class="fa fa-3x fa-arrow-circle-left"></i>
-        </div>
+
 </div>
 </template>
 
@@ -54,7 +56,7 @@ export default {
     
     },
     mounted(){
-        this.carousel = this.$el.children[0];
+        this.carousel = this.$el.lastChild;
     },
     updated(){
         try{

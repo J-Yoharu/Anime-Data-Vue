@@ -25,8 +25,13 @@
         <!-- container dos carousel -->
         <div class="container">
             <div class="row">
-                <Carousel :arr="this.animesDaSemana"/>
+                <Carousel :arr="this.animesDaSemana">
+                  <h3>Anmes da semana </h3>
+                </Carousel>
             </div>
+            <!-- <div class="row">
+              <Carousel :arr="this.animesTop"/>
+            </div> -->
         </div>
       </div>
 
@@ -41,16 +46,13 @@ export default {
         return{
             animesDaSemana:'',
             animesTop:'',
-            val:'',
         }
     },
     methods:{
-        async getAnimes(url){
-           var a = await axios.get(url);
-           console.log(a);
-           
+        async getAnimes(variable,url){
+           let a = await axios.get(url);  
            try{
-             this.animesDaSemana =  a.data.results;
+           this[variable] = a.data.top;
            }catch(e){
              console.log(e);
            }
@@ -58,11 +60,9 @@ export default {
         },
     },
     mounted(){
-      //this.animesTop = this.getAnimes('https://api.jikan.moe/v3/top/anime/1/tv');
-      //this.getAnimes('https://api.jikan.moe/v3/top/anime/1/tv');
-
-
-    }
+      //carregando os carousels
+      this.getAnimes('animesDaSemana','https://api.jikan.moe/v3/top/anime/1/tv');
+    },
 }
 </script>
 
