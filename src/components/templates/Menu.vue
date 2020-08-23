@@ -2,7 +2,7 @@
     <div>
         <nav class="navbar navbar-expand-lg navbar-light position-abolute d-absolute bg-light">
             <router-link :to="{name:'menu'}" tag="li" class="nav-link anime">
-                <h3> Anime <span class="data">Data</span></h3>
+                <h4> Anime <span class="data">Data</span></h4>
             </router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBar">
                 <span class="navbar-toggler-icon"></span>

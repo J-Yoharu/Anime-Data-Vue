@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Menu/>
-    <router-view/>
+    
+    <transition>
+      <router-view/>
+    </transition>
+
     <Footer/>
   </div>
 </template>
@@ -25,6 +29,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color:rgb(0, 24, 41);
+
 }
 .anime{
 color:black;

@@ -1,15 +1,17 @@
 <template>
         <!-- eslint-disable -->
 
-    <div class="carousel" style="overflow:hidden">
+    <div class="carousel m-2" style="overflow:hidden">
             <slot></slot>
         <div class="carousel-content d-inline-flex w-100" style="white-space:nowrap;overflow-y:hidden;overflow-x=scroll">
+          
             <div v-for="(anime,index) in arr" style="min-width:13rem;min-height:16rem;position:relative;" :key="index" class="card item d-inline-flex m-2 rounded shadow-lg border">
                 <img class="card-img-top" :src="anime.image_url" alt="">
                 <div class="card-body p-0">
                     <h4 class="card-title mt-2 text-center m-0">{{anime.title}}</h4>
                 </div>
             </div>
+
             <div class="carousel-button right d-flex align-items-center"  @click="num++">
                 <i class="fa fa-3x fa-arrow-circle-right"></i>
             </div>
@@ -94,6 +96,9 @@ export default {
     outline: none;
     height:100%;
       
+}
+.carousel-button:hover{
+    color:white;
 }
 .right{
     right:0;
