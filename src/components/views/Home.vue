@@ -50,6 +50,7 @@
 <script>
 import Carousel from '../Carousel';
 import axios from 'axios';
+
 export default {
     components:{Carousel},
     data(){
@@ -91,5 +92,12 @@ export default {
 </script>
 
 <style>
-
+  #search{
+    position: relative;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url("../../assets/kimi-no-na-wa.jpg")
+  }
 </style>

@@ -2,7 +2,7 @@
   <div id="app">
     <Menu/>
     
-    <transition>
+    <transition enter-active-class="animated rubberBand" mode="in-out" leave-active-class="animated rubberBand">
       <router-view/>
     </transition>
 
