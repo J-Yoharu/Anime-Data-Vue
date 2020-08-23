@@ -10,7 +10,6 @@
             <div class="collapse navbar-collapse" id="navBar">
                 <ul class="navbar-nav mr-auto" id="navBar">
                     <router-link :to="{name:'home'}" tag="li" class="nav-link" active-class="active" exact>Home</router-link>
-                    <router-link to="/animes" tag="li" class="nav-link" active-class="active" exact>Animes</router-link>
                     <router-link to="/calendario" tag="li" class="nav-link" active-class="active" exact>Calendário</router-link>
                 </ul>
 

@@ -2,9 +2,7 @@
   <div id="app">
     <Menu/>
     
-    <transition enter-active-class="animated rubberBand" mode="in-out" leave-active-class="animated rubberBand">
-      <router-view/>
-    </transition>
+    <router-view style="min-height:60vh"/>
 
     <Footer/>
   </div>

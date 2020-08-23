@@ -4,7 +4,7 @@
         <!-- container de pesquisa -->
         <div class="container-fluid bg-dark search" id="search" style="height:40rem;">
           <div class="row h-50 pt-5">
-            <div class="col d-flex justify-content-center align-items-end">
+            <div class="col d-flex justify-content-center align-items-end animated rubberBand">
               <span class="h1 anime" style="font-size:5rem;">Anime <span class="data">Data</span></span>
             </div>
           </div>
@@ -16,7 +16,7 @@
                 <input type="text" id="inputAnime" class="form-control" v-model="search" placeholder="Pesquisar">
                 <div class="input-group-prepend">
                     <router-link :to="{
-                      name:'search',
+                      name:'anime',
                       params:{id:this.search},
                       query:{teste:'testando'}
                       }" 
