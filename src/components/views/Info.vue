@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1>Info do naruto {{id}}</h1>
+      <h1>Info de {{id}}</h1>
   </div>
 </template>
 

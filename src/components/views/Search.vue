@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h1>{{id}}</h1>
     <div class="row">
       <div v-for="(anime,index) in animeData" style="width:13rem;height:16rem;position:relative;" :key="index" class="card item d-inline-flex m-2 rounded shadow-lg border animated bounce">
         <img class="card-img-top" :src="anime.image_url" alt="">

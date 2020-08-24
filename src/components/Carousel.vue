@@ -5,13 +5,8 @@
             <slot></slot>
         <div class="carousel-content d-inline-flex w-100" style="white-space:nowrap;overflow-y:hidden;overflow-x=scroll">
           
-            <div v-for="(anime,index) in arr" style="min-width:13rem;min-height:16rem;position:relative;" :key="index" class="card item d-inline-flex m-2 rounded shadow-lg border">
-                <img class="card-img-top" :src="anime.image_url" alt="">
-                <div class="card-body p-0">
-                    <h4 class="card-title mt-2 text-center m-0">{{anime.title}}</h4>
-                </div>
-            </div>
-
+            <Cards v-for="(anime,index) in arr" :key="index" :data='anime'/>
+            
             <div class="carousel-button right d-flex align-items-center"  @click="num++">
                 <i class="fa fa-3x fa-arrow-circle-right"></i>
             </div>
@@ -25,7 +20,9 @@
 </template>
 
 <script>
+import Cards from './Cards';
 export default {
+    components:{Cards},
     props:['arr'],
     data(){
         return{
@@ -59,6 +56,7 @@ export default {
     },
     mounted(){
         this.carousel = this.$el.lastChild;
+        console.log(this.arr)
     },
     updated(){
         try{
@@ -74,12 +72,6 @@ export default {
 </script>
 
 <style>
-.card img{
-    height:13rem;
-}
-.card-title{
-    font-size:1rem;
-}
 .carousel-content{
     transition:2s;
 }
