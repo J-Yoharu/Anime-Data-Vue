@@ -1,5 +1,5 @@
 <template>
-    <div style="min-width:13rem;min-height:16rem;position:relative;" class="card item d-inline-flex m-2 rounded shadow-lg border">
+    <div style="min-width:13rem;width:13rem;min-height:16rem;height:16rem;position:relative;" class="card item d-inline-flex m-2 rounded shadow-lg border">
     <router-link :to="{
         name:'info',
         params:{id:data.mal_id},
