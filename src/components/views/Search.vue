@@ -2,7 +2,7 @@
   <div class="container">
     <h1>{{id}}</h1>
     <div class="row">
-      <Cards v-for="(anime,index) in animeData" :key="index" :data='anime'/>
+      <Cards :data='animeData'/>
     </div>
   </div>
 </template>

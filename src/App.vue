@@ -2,7 +2,7 @@
   <div id="app">
     <Menu/>
     
-    <router-view style="min-height:60vh"/>
+    <router-view style="min-height:70vh"/>
 
     <Footer/>
   </div>

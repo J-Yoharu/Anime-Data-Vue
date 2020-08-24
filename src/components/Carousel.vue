@@ -5,7 +5,7 @@
             <slot></slot>
         <div class="carousel-content d-inline-flex w-100" style="white-space:nowrap;overflow-y:hidden;overflow-x=scroll">
           
-            <Cards v-for="(anime,index) in arr" :key="index" :data='anime'/>
+            <Cards :data='arr'/>
             
             <div class="carousel-button right d-flex align-items-center"  @click="num++">
                 <i class="fa fa-3x fa-arrow-circle-right"></i>
@@ -40,6 +40,7 @@ export default {
             for (let index = 0; index < this.qtdComponents.length; index++) {
                 if(this.elementSize*(index+1)>this.carousel.offsetWidth){
                     cardsNaTela = index;
+                    console.log(`Cards na tela = ${cardsNaTela}`)
                     break;
                 }   
             }
@@ -56,12 +57,12 @@ export default {
     },
     mounted(){
         this.carousel = this.$el.lastChild;
-        console.log(this.arr)
     },
     updated(){
         try{
-            this.qtdComponents=this.carousel.children;
-    
+            //tem que mostrar todas os cards dentro do carousel
+            this.qtdComponents=this.carousel.firstChild.children;
+
             //o tamanho do elemento é igual o primeiro elemento do card + a borda dele *2 (right e left)
             this.elementSize=this.qtdComponents[0].offsetWidth+ this.qtdComponents[0].offsetLeft*2;
         }catch(e){

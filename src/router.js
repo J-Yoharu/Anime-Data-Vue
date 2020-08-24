@@ -5,6 +5,7 @@ import Router from 'vue-router';
 import Home from './components/views/Home';
 import Search from './components/views/Search';
 import Info from './components/views/Info';
+import Genero from './components/views/Genero';
 import error from './components/views/error'
 
 Vue.use(Router);
@@ -19,15 +20,21 @@ export default new Router({
         },
         {
             name:'anime',
-            path:'/anime/:id',
+            path:'/anime/seach/:id',
             component:Search,
             props:true,
         },
         {
             name:'info',
-            path:'/anime/:id/info',
+            path:'/animes/:id/',
             component:Info,
             props:true
+         },
+         {
+            name:'generos',
+            path:'/generos/:id',
+            component:Genero,
+            props:true,
          },
          {
             path:'*',

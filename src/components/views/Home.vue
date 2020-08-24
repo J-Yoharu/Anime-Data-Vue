@@ -1,6 +1,6 @@
 <template>
       <!-- Div com o container da pesquisa e carousel  -->
-      <div class="home-content pb-3">
+      <div class="home-content">
         <!-- container de pesquisa -->
         <div class="container-fluid bg-dark search" id="search" style="height:40rem;">
           <div class="row h-50 pt-5">

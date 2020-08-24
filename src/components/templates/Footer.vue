@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid mt-4">
 
         <!-- Black Row superior -->
         <div class="row" style="background-color:black;">
